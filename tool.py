@@ -1,7 +1,6 @@
 # Imports
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 import time
 import os
 
@@ -11,10 +10,7 @@ user =  str(input('Insira o nome do usuário: '))
 
 
 # Starting webdriver
-options = Options()
-options.page_load_strategy = 'normal'
-options.headless = False
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome()
 driver.get("https://www.instagram.com/" + user)
 
 
@@ -32,7 +28,7 @@ if len(photos) > 0:
     while countphotos < len(photos):
         photos[countphotos].screenshot('./{}/img{}.png'.format(user, countphotos))
         driver.execute_script("window.scrollTo({}, {});".format(countscroll, countscroll + 100))
-        print('Baixando fotos {}'.format(countphotos))
+        print('Baixando fotos: {}'.format(countphotos))
         countphotos += 1
         countscroll += 100
         time.sleep(1)
